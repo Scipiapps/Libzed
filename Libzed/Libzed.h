@@ -39,6 +39,7 @@ enum {
 + (UIDeviceResolution)resolution;
 + (NSDate*) getDate:(NSTimeInterval)t;
 + (NSTimeInterval) getInterval:(NSDate*)t;
++ (NSString*) userIdentifier;
 + (UIImage *)capture:(UIView*)target;
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 @end

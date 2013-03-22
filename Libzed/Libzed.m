@@ -9,6 +9,7 @@
 #import "Libzed.h"
 #import <stdlib.h>
 #import <time.h>
+#import <AdSupport/ASIdentifierManager.h>
 
 @implementation Libzed
 
@@ -119,6 +120,11 @@ static Libzed* InstanceofLibzed= nil;
 + (NSTimeInterval) getInterval:(NSDate*)t
 {
     return [t timeIntervalSince1970];
+}
+
++ (NSString*) userIdentifier
+{
+    return [[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString] retain];
 }
 
 + (UIImage *)capture:(UIView*)target
