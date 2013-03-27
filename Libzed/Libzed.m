@@ -174,4 +174,38 @@ static Libzed* InstanceofLibzed= nil;
     return newImage;
 }
 
++ (UIImage*)imageFromURL:(NSURL*)url
+{
+    NSData *thedata = [NSData dataWithContentsOfURL:url];
+    UIImage *ret = [[UIImage alloc] initWithData:thedata];
+    return ret;
+}
+
++ (BOOL)imageWriteToDevice:(UIImage*)image filename:(NSString*)name fileext:(NSString*)ext
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:name];
+    NSData *data = nil;
+    
+    if (YES == [@"png" isEqualToString:ext]) {
+        data = UIImagePNGRepresentation(image);
+    } else if (YES == [@"jpg" isEqualToString:ext]) {
+        data = UIImageJPEGRepresentation(image, 100.0f);
+    } else {
+        return NO;
+    }
+    [data writeToFile:localFilePath atomically:YES];
+    
+    return YES;
+}
+
++ (UIImage*) imageReadDevice:(NSString*)name
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:name];
+    return [UIImage imageWithContentsOfFile:localFilePath];
+}
+
 @end

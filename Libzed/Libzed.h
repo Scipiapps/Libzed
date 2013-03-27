@@ -40,6 +40,10 @@ enum {
 + (NSDate*) getDate:(NSTimeInterval)t;
 + (NSTimeInterval) getInterval:(NSDate*)t;
 + (NSString*) userIdentifier;
-+ (UIImage *)capture:(UIView*)target;
-+ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
++ (UIImage *) capture:(UIView*)target;
+
++ (UIImage*) imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
++ (UIImage*) imageFromURL:(NSURL*)url;
++ (BOOL) imageWriteToDevice:(UIImage*)image filename:(NSString*)name fileext:(NSString*)ext;
++ (UIImage*) imageReadDevice:(NSString*)file;
 @end
