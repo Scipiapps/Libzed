@@ -142,19 +142,13 @@ static Libzed* InstanceofLibzed= nil;
     
     if( UIDeviceResolution_iPhoneRetina4 != l) {
         imageRef = CGImageCreateWithImageInRect([viewImage CGImage],
-                                                CGRectMake(0,
-                                                           26*[UIScreen mainScreen].scale,
-                                                           bound.size.width*[UIScreen mainScreen].scale,
-                                                           IPHONE_HEIGHT*[UIScreen mainScreen].scale));
+                                                [[UIScreen mainScreen] bounds]);
         ret = [UIImage imageWithCGImage:imageRef
                                   scale:viewImage.scale
                             orientation:viewImage.imageOrientation];
     } else {
         imageRef = CGImageCreateWithImageInRect([viewImage CGImage],
-                                                CGRectMake(0,
-                                                           26*[UIScreen mainScreen].scale,
-                                                           bound.size.width*[UIScreen mainScreen].scale,
-                                                           IPHONE5_IMAGE_HEIGHT*[UIScreen mainScreen].scale));
+                                                [[UIScreen mainScreen] bounds]);
         ret = [UIImage imageWithCGImage:imageRef
                                   scale:viewImage.scale
                             orientation:viewImage.imageOrientation];
@@ -183,6 +177,9 @@ static Libzed* InstanceofLibzed= nil;
 
 + (BOOL)imageWriteToDevice:(UIImage*)image filename:(NSString*)name fileext:(NSString*)ext
 {
+    if (nil == name) {
+        return NO;
+    }
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:name];
