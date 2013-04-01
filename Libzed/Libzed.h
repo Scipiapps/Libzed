@@ -42,6 +42,7 @@ enum {
 + (NSString*) userIdentifier;
 + (UIImage *) capture:(UIView*)target;
 
++ (UIImage *) imageColorChange:(UIImage *)image color:(UIColor*)color;
 + (UIImage*) imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize;
 + (UIImage*) imageFromURL:(NSURL*)url;
 + (BOOL) imageWriteToDevice:(UIImage*)image filename:(NSString*)name fileext:(NSString*)ext;
