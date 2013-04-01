@@ -47,4 +47,6 @@ enum {
 + (UIImage*) imageFromURL:(NSURL*)url;
 + (BOOL) imageWriteToDevice:(UIImage*)image filename:(NSString*)name fileext:(NSString*)ext;
 + (UIImage*) imageReadDevice:(NSString*)file;
+
++ (UIColor*) UIColorFromRGB:(int)rgbValue;
 @end
