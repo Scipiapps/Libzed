@@ -130,7 +130,7 @@ static Libzed* InstanceofLibzed= nil;
 + (UIImage *)capture:(UIView*)target
 {
     UIDeviceResolution l = [self resolution];
-    CGRect bound = [[UIScreen mainScreen] bounds];
+//    CGRect bound = [[UIScreen mainScreen] bounds];
     
     UIGraphicsBeginImageContextWithOptions(target.bounds.size, target.opaque, 0.0);
     [target.layer renderInContext:UIGraphicsGetCurrentContext()];
@@ -140,19 +140,14 @@ static Libzed* InstanceofLibzed= nil;
     CGImageRef imageRef;
     UIImage* ret;
     
-    if( UIDeviceResolution_iPhoneRetina4 != l) {
-        imageRef = CGImageCreateWithImageInRect([viewImage CGImage],
-                                                [[UIScreen mainScreen] bounds]);
-        ret = [UIImage imageWithCGImage:imageRef
-                                  scale:viewImage.scale
-                            orientation:viewImage.imageOrientation];
-    } else {
-        imageRef = CGImageCreateWithImageInRect([viewImage CGImage],
-                                                [[UIScreen mainScreen] bounds]);
-        ret = [UIImage imageWithCGImage:imageRef
-                                  scale:viewImage.scale
-                            orientation:viewImage.imageOrientation];
-    }
+    imageRef = CGImageCreateWithImageInRect([viewImage CGImage],
+                                            CGRectMake(0, 0,
+                                                       target.frame.size.width,
+                                                       target.frame.size.height)
+                                            );
+    ret = [UIImage imageWithCGImage:imageRef
+                              scale:viewImage.scale
+                        orientation:viewImage.imageOrientation];
     
     CGImageRelease(imageRef);
     
