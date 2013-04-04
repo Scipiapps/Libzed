@@ -141,10 +141,9 @@ static Libzed* InstanceofLibzed= nil;
     UIImage* ret;
     
     imageRef = CGImageCreateWithImageInRect([viewImage CGImage],
-                                            CGRectMake(0, 0,
-                                                       target.frame.size.width,
-                                                       target.frame.size.height)
-                                            );
+                                CGRectMake(0, 0,
+                                    target.frame.size.width*[UIScreen mainScreen].scale,
+                                    target.frame.size.height*[UIScreen mainScreen].scale));
     ret = [UIImage imageWithCGImage:imageRef
                               scale:viewImage.scale
                         orientation:viewImage.imageOrientation];
