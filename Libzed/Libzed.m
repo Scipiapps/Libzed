@@ -243,4 +243,22 @@ static Libzed* InstanceofLibzed= nil;
             blue:((float)((int)rgbValue & 0xFF))/255.0 alpha:1.0];
 }
 
++(NSData *)dataForObject:(id)obj key:(NSString*)key
+{
+    NSMutableData *data = [NSMutableData data];
+    NSKeyedArchiver  *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+    [archiver encodeObject:obj forKey:key];
+    [archiver finishEncoding];
+    [archiver release];
+    return data;
+}
+
++(id)objectForData:(NSData *)data key:(NSString*)key
+{
+    NSKeyedUnarchiver  *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+    id obj = [unarchiver decodeObjectForKey:key];
+    [unarchiver finishDecoding];
+    [unarchiver release];
+    return obj;
+}
 @end

@@ -49,4 +49,8 @@ enum {
 + (UIImage*) imageReadDevice:(NSString*)file;
 
 + (UIColor*) UIColorFromRGB:(int)rgbValue;
+
++ (NSData *)dataForObject:(id)obj key:(NSString*)key;
++ (id)objectForData:(NSData *)data key:(NSString*)key;
+
 @end
