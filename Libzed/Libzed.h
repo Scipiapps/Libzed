@@ -31,6 +31,7 @@ enum {
     BOOL debug;
 }
 
++ (CGRect) applicationBounds;
 + (NSObject*) choice:(NSMutableArray*) array;
 + (void) shuffle:(NSMutableArray*) array;
 + (NSMutableArray*) range:(NSInteger) num;

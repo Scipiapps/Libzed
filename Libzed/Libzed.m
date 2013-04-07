@@ -127,11 +127,14 @@ static Libzed* InstanceofLibzed= nil;
     return [[[[ASIdentifierManager sharedManager] advertisingIdentifier] UUIDString] retain];
 }
 
+
++ (CGRect) applicationBounds
+{
+    return [[UIScreen mainScreen] bounds];
+}
+
 + (UIImage *)capture:(UIView*)target
 {
-    UIDeviceResolution l = [self resolution];
-//    CGRect bound = [[UIScreen mainScreen] bounds];
-    
     UIGraphicsBeginImageContextWithOptions(target.bounds.size, target.opaque, 0.0);
     [target.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
