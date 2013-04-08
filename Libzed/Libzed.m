@@ -133,6 +133,13 @@ static Libzed* InstanceofLibzed= nil;
     return [[UIScreen mainScreen] bounds];
 }
 
++ (NSString*) applicationLanguage
+{
+    NSArray* languages = [[NSUserDefaults standardUserDefaults]
+                          objectForKey:@"AppleLanguages"];
+    return [languages objectAtIndex:0];
+}
+
 + (UIImage *)capture:(UIView*)target
 {
     UIGraphicsBeginImageContextWithOptions(target.bounds.size, target.opaque, 0.0);

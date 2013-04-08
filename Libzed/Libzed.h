@@ -31,7 +31,11 @@ enum {
     BOOL debug;
 }
 
+/* application settings */
 + (CGRect) applicationBounds;
++ (NSString*) applicationLanguage;
+
+/* Tools */
 + (NSObject*) choice:(NSMutableArray*) array;
 + (void) shuffle:(NSMutableArray*) array;
 + (NSMutableArray*) range:(NSInteger) num;
