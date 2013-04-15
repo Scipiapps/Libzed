@@ -58,4 +58,7 @@ enum {
 + (NSData *)dataForObject:(id)obj key:(NSString*)key;
 + (id)objectForData:(NSData *)data key:(NSString*)key;
 
+/* View */
++ (UIViewController*)rootViewController;
+
 @end

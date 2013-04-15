@@ -271,4 +271,10 @@ static Libzed* InstanceofLibzed= nil;
     [unarchiver release];
     return obj;
 }
+
++ (UIViewController*)rootViewController
+{
+    return [[[UIApplication sharedApplication] keyWindow] rootViewController];
+}
+
 @end
