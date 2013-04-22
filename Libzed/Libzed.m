@@ -10,6 +10,7 @@
 #import <stdlib.h>
 #import <time.h>
 #import <AdSupport/ASIdentifierManager.h>
+#import <CoreImage/CoreImage.h>
 
 @implementation Libzed
 
@@ -253,6 +254,24 @@ static Libzed* InstanceofLibzed= nil;
             blue:((float)((int)rgbValue & 0xFF))/255.0 alpha:1.0];
 }
 
+/*
+ It might as well use colorWithCGColor to avoid error.
+ http://stackoverflow.com/a/14546889/2268390
+ */
++ (UIColor*) UIColorFromNSString:(NSString*)str
+{
+    CIColor *coreColor = [CIColor colorWithString:str];
+    UIColor* newcolor = [UIColor colorWithCIColor:coreColor];
+    newcolor = [UIColor colorWithCGColor:newcolor.CGColor];
+    return [newcolor retain];
+}
+
++ (NSString*) NSStringFromUIColor:(UIColor*)color
+{
+    CGColorRef colorRef = [UIColor grayColor].CGColor;
+    return [[CIColor colorWithCGColor:colorRef].stringRepresentation retain];
+}
+
 +(NSData *)dataForObject:(id)obj key:(NSString*)key
 {
     NSMutableData *data = [NSMutableData data];
@@ -271,4 +290,5 @@ static Libzed* InstanceofLibzed= nil;
     [unarchiver release];
     return obj;
 }
+
 @end
