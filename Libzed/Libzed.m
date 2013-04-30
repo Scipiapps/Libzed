@@ -189,7 +189,7 @@ static Libzed* InstanceofLibzed= nil;
     
     
     const float* colors = CGColorGetComponents( color.CGColor );
-    CGContextSetRGBFillColor(c, colors[0], colors[1], colors[2], .75);
+    CGContextSetRGBFillColor(c, colors[0], colors[1], colors[2], 1.0);
     
     contextRect.size.height = -contextRect.size.height;
     contextRect.size.height -= 15;
@@ -245,6 +245,39 @@ static Libzed* InstanceofLibzed= nil;
     NSString *documentsDirectory = [paths objectAtIndex:0];
     NSString *localFilePath = [documentsDirectory stringByAppendingPathComponent:name];
     return [UIImage imageWithContentsOfFile:localFilePath];
+}
+
++ (UIColor*) UIColorFromHex:(NSString *)hex
+{
+    NSString *colorString = [[hex uppercaseString] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] ;
+    if ([colorString length] < 6)
+        return [UIColor grayColor];
+    
+    if ([colorString hasPrefix:@"0X"])
+        colorString = [colorString substringFromIndex:2];
+    else if ([colorString hasPrefix:@"#"])
+        colorString = [colorString substringFromIndex:1];
+    else if ([colorString length] != 6)
+        return  [UIColor grayColor];
+    
+    NSRange range;
+    range.location = 2;
+    range.length = 2;
+    NSString *rString = [colorString substringWithRange:range];
+    range.location += 2;
+    NSString *gString = [colorString substringWithRange:range];
+    range.location += 2;
+    NSString *bString = [colorString substringWithRange:range];
+    
+    unsigned int red, green, blue;
+    [[NSScanner scannerWithString:rString] scanHexInt:&red];
+    [[NSScanner scannerWithString:gString] scanHexInt:&green];
+    [[NSScanner scannerWithString:bString] scanHexInt:&blue];
+    
+    return [UIColor colorWithRed:((float) red / 255.0f)
+                           green:((float) green / 255.0f)
+                            blue:((float) blue / 255.0f)
+                           alpha:1.0f];
 }
 
 + (UIColor*) UIColorFromRGB:(int)rgbValue {

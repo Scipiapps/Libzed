@@ -54,6 +54,7 @@ enum {
 + (UIImage*) imageReadDevice:(NSString*)file;
 
 + (UIColor*) UIColorFromRGB:(int)rgbValue;
++ (UIColor*) UIColorFromHex:(NSString *)hex;
 + (UIColor*) UIColorFromNSString:(NSString*)str;
 + (NSString*) NSStringFromUIColor:(UIColor*)color;
 
