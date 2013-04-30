@@ -56,6 +56,7 @@ enum {
 + (UIColor*) UIColorFromRGB:(int)rgbValue;
 + (UIColor*) UIColorFromHex:(NSString *)hex;
 + (UIColor*) UIColorFromNSString:(NSString*)str;
++ (UIColor*) UIColorFromName:(NSString *)name;
 + (NSString*) NSStringFromUIColor:(UIColor*)color;
 
 + (NSData *)dataForObject:(id)obj key:(NSString*)key;
