@@ -65,4 +65,7 @@ enum {
 /* View */
 + (UIViewController*)rootViewController;
 
+/* iCloud */
++ (BOOL)addSkipBackupAttributeToItemAtURL:(NSURL *)URL;
+
 @end
