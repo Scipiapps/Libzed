@@ -18,7 +18,7 @@ static Libzed_plist* InstanceofPlatform_pListWrapper= nil;
 
 + (id) allocWithZone:(NSZone*) zone{
 	@synchronized (self){
-		if( NO == InstanceofPlatform_pListWrapper){
+		if(nil == InstanceofPlatform_pListWrapper){
 			InstanceofPlatform_pListWrapper = [super allocWithZone:zone];
 		}
 	}
