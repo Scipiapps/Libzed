@@ -97,6 +97,10 @@ static Libzed* InstanceofLibzed= nil;
                 resolution = UIDeviceResolution_iPhoneRetina35;
             else if (pixelHeight == 1136.0f)
                 resolution = UIDeviceResolution_iPhoneRetina4;
+            else if (pixelHeight == 1334.0f)
+                resolution = UIDeviceResolution_iPhoneRetina47;
+            else if (pixelHeight == 2208.0f)
+                resolution = UIDeviceResolution_iPhoneRetina55;
             
         } else if (scale == 1.0f && pixelHeight == 480.0f)
             resolution = UIDeviceResolution_iPhoneStandard;
@@ -132,6 +136,11 @@ static Libzed* InstanceofLibzed= nil;
 + (CGRect) applicationBounds
 {
     return [[UIScreen mainScreen] bounds];
+}
+
++(UIInterfaceOrientation) applicationOrientation
+{
+    return [[UIDevice currentDevice] orientation];
 }
 
 + (NSString*) applicationLanguage
